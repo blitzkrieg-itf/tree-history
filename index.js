@@ -59,7 +59,6 @@ var options = {
     edges: {
         length: 500,
         shadow: true,
-        physics: false
     }
 
 };

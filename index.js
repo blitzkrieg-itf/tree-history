@@ -9,12 +9,22 @@ console.log(localStorage.getItem("tree_dict_arr"));
 var edge = JSON.parse(localStorage.getItem("tree_dict_arr"));
 console.log(edge);
 var nodes = new vis.DataSet();
+id_list = [];
 for (var i of edge) {
     console.log(i);
-    var node = { id: i["to"], label: i["title"], url: i["to"] };
-    console.log(node);
-    nodes.add(node);
+    if(i["favicon"]!=undefined){
+        var node = { id: i["to"], label: i["title"], url: i["to"] ,image: i["favicon"], shape:"image"};
+    }else{
+        var node = { id: i["to"], label: i["title"], url: i["to"] ,image: "https://www.google.co.jp/favicon.ico", shape:"image"};
+    } 
+    console.log(node); 
+    if(!id_list.includes(node["id"])){
+        nodes.add(node);
+        id_list.push(node["id"]);
+    }
+    
 }
+
 
 
 //var nodes = new vis.DataSet([
@@ -45,7 +55,12 @@ var data = {
 };
 var options = {
     //physics: false,
-    size: 20
+    size: 20,
+    edges: {
+        length: 500,
+        shadow: true,
+        physics: false
+    }
 
 };
 var network = new vis.Network(container, data, options);

@@ -16,21 +16,16 @@
 //)
 var preURL = "";
 var nowURL = "";
-//var preTitle="";
+var preTitle="";
 var nowTitle = "";
-function tree_register(preURL, nowURL, nowTitle) {
+var nowFavicon="";
+function tree_register(preURL, nowURL, nowTitle, nowFavicon) {
     var tree_dict_arr = JSON.parse(localStorage.getItem("tree_dict_arr"));
-    var tree_dict = { from: preURL, to: nowURL, arrows: 'from', title: nowTitle};
+    var tree_dict = { from: preURL, to: nowURL, arrows: 'to', title: nowTitle, favicon:nowFavicon};
     console.log(tree_dict_arr)
     tree_dict_arr.push(tree_dict);    
-    
     localStorage.setItem("tree_dict_arr", JSON.stringify(tree_dict_arr));
     console.log(JSON.stringify(tree_dict_arr));
-    // var tree_dict_arr = JSON.parse(localStorage.getItem("tree_dict_arr"));
-    // var tree_dict = {from:preURL,to:nowURL,arrows: 'from',title:nowTitle};
-    // tree_dict_arr.push(tree_dict);
-    // localStorage.setItem("tree_dict_arr", JSON.stringify(tree_dict_arr));
-    // console.log(JSON.stringify(tree_dict_arr));
 }
 
 //タブが切り替わった時に発火
@@ -38,15 +33,16 @@ chrome.tabs.onActivated.addListener(
     function (activeinfo) {
         chrome.tabs.get(activeinfo["tabId"],
             function (tabinfo) {
-                console.log("nowURL");
-                console.log(tabinfo.url);
-                console.log(tabinfo.title);
+                console.log("activated");
+                console.log(tabinfo);
+                //console.log(tabinfo);
                 if (tabinfo.url != undefined) {
                     preURL = nowURL;
                     //preTitle = nowTitle;
                     nowURL = tabinfo.url;
                     nowTitle = tabinfo.title;
-                    tree_register(preURL, nowURL, nowTitle);
+                    nowFavicon = tabinfo.favIconUrl;
+                    //tree_register(preURL, nowURL, nowTitle);
                 }
             }
         )
@@ -57,12 +53,11 @@ chrome.tabs.onActivated.addListener(
 var onCreatedFlag = false
 chrome.tabs.onCreated.addListener(
     function (tab) {
-        console.log("created")
-        console.log(tab.pendingUrl)
-        onCreatedFlag = true
-        if (tab != undefined) {
-            tree_register(preURL, tab.pendingUrl, tab.title);
-        }
+        console.log("created");
+        
+        //console.log(tab.pendingUrl);
+        onCreatedFlag = true;
+        
 
     }
 )
@@ -70,17 +65,31 @@ chrome.tabs.onCreated.addListener(
 //既存タブが更新された時に発火
 chrome.tabs.onUpdated.addListener(
     function (tabid, changeInfo, tab) {
-        if (changeInfo.status == "loading") {
+        if (changeInfo.status == "complete") {
             if (!onCreatedFlag) {
                 console.log("updated")
-                console.log(changeInfo.url)
-                console.log(changeInfo.title)
-                if (changeInfo.url != undefined) {
+                console.log(changeInfo)
+                console.log(tab.url)
+                console.log(tab.title)
+                if (tab.url != undefined) {
                     preURL = nowURL;
                     //preTitle = nowTitle;
-                    nowURL = changeInfo.url;
-                    nowTitle = changeInfo.title;
-                    tree_register(preURL, nowURL, nowTitle);
+                    nowURL = tab.url;
+                    nowTitle = tab.title;
+                    nowFavicon = tab.favIconUrl;
+                    tree_register(preURL, nowURL, nowTitle, nowFavicon);
+                }
+            } else {
+                if (tab.url != undefined) {
+                    console.log(tab);
+                    console.log("preURL");
+                    console.log(preURL);
+                    console.log("nowURL");
+                    console.log(nowURL);
+                    console.log("tab.url");
+                    console.log(tab.url);
+                    // nowFavicon = tab.faviconUrl;
+                    tree_register(nowURL, tab.url, tab.title, tab.favIconUrl);
                 }
             }
             onCreatedFlag = false

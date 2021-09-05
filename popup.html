@@ -4,16 +4,26 @@
         <meta charset="UTF-8">
         <title>popup</title>
         <style>
-            body{
+            /* body{
                 width: 300px;
                 height: 100px;
-            }
+            } */
         </style>
-        
+        <link rel="stylesheet" href="css/bootstrap.min.css"></link>
     </head>
 <body>
-    <a id="search-link" target="_blank">tree history</a><br>
-    <button id="button">追跡開始</button>
+    <!-- <h1><a id="search-link" target="_blank">tree history</a></h1> -->
+    <div class="jumbotron">
+        <div class="container">
+          <a class="display-5" style="font-family:Corben,cursive">tree history</h1>
+        </div>
+      </div>
+    <div class="col text-center">
+        <button type="button" class="btn btn-primary" id="button">追跡開始</button>
+        <hr>
+        <a id="search-link" target="_blank">履歴を見る</a>
+    </div>
+    <br>
     <script src="jquery-3.6.0.min.js"></script>
     <script src="popup.js"></script>
 </body>

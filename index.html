@@ -4,27 +4,35 @@
         <meta charset="UTF-8">
         <title>index</title>
         <style>
-            body{
-                width: 1000px;
-                height: 800px;
-            }
         </style>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet">
         <style type="text/css">
             #network {
-                width: 1000px;
-                height: 800px;
+                width: 900px;
+                height: 500px;
                 border: 1px solid #000;
+                margin: 0 auto;
             }
+            .cp_bgpattern05 {
+	background-color: #FFFDE7;
+	background-size: 80px 80px;
+	background-image:
+	 linear-gradient(rgba(215,204,200,.7) 1%, rgba(215,204,200,.7) 1%, transparent 1%,
+	  transparent 99%, rgba(215,204,200,.7) 99%, rgba(215,204,200,.7) 100%),
+	 linear-gradient(90deg, rgba(215,204,200,.7) 1%, rgba(215,204,200,.7) 1%, transparent 1%,
+	  transparent 99%, rgba(215,204,200,.7) 99%, rgba(215,204,200,.7) 100%),
+	 linear-gradient(transparent, transparent 25%, rgba(215,204,200,.4) 25%, rgba(215,204,200,.4) 26%, transparent 26%,
+	  transparent 50%, rgba(215,204,200,.4) 50%, rgba(215,204,200,.4) 51%, transparent 51%,
+	  transparent 75%, rgba(215,204,200,.4) 75%, rgba(215,204,200,.4) 76%, transparent 76%, transparent 100%),
+	 linear-gradient(90deg, transparent, transparent 25%, rgba(215,204,200,.4) 25%, rgba(215,204,200,.4) 26%, transparent 26%,
+	  transparent 50%, rgba(215,204,200,.4) 50%, rgba(215,204,200,.4) 51%, transparent 51%,
+	  transparent 75%, rgba(215,204,200,.4) 75%, rgba(215,204,200,.4) 76%, transparent 76%, transparent 100%);
+}
         </style>
     </head>
-<body>
-    <table border="1">
-        <thead></thead>
-        <tbody id="histories"></tbody>
-    </table>
-
-    <div id="network"></div>
+<body class="cp_bgpattern05">
+    <h1 style="font-family:Corben,cursive">tree history</h1>
+    <div id="network" style="background-color: white;"></div>
 
 
     <script src="jquery-3.6.0.min.js"></script>

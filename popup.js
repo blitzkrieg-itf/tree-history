@@ -1,7 +1,7 @@
 var now = Date.now();
 localStorage.setItem('time', now);
 var tree_dict_arr = []
-localStorage.setItem("tree_dict_arr", tree_dict_arr);
+localStorage.setItem("tree_dict_arr", JSON.stringify(tree_dict_arr));
 // chrome.tabs.query({}, function (tabs) {
 //     $('#tabnum').text('現在開いているタブの数は[' + tabs.length + ']個です');
 //     $("#extention-id").text(chrome.runtime.id);

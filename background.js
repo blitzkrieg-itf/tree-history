@@ -20,10 +20,17 @@ var nowURL = "";
 var nowTitle = "";
 function tree_register(preURL, nowURL, nowTitle) {
     var tree_dict_arr = JSON.parse(localStorage.getItem("tree_dict_arr"));
-    var tree_dict = { from: preURL, to: nowURL, arrows: 'from', title: nowTitle };
-    tree_dict_arr.push(tree_dict);
+    var tree_dict = { from: preURL, to: nowURL, arrows: 'from', title: nowTitle};
+    console.log(tree_dict_arr)
+    tree_dict_arr.push(tree_dict);    
+    
     localStorage.setItem("tree_dict_arr", JSON.stringify(tree_dict_arr));
     console.log(JSON.stringify(tree_dict_arr));
+    // var tree_dict_arr = JSON.parse(localStorage.getItem("tree_dict_arr"));
+    // var tree_dict = {from:preURL,to:nowURL,arrows: 'from',title:nowTitle};
+    // tree_dict_arr.push(tree_dict);
+    // localStorage.setItem("tree_dict_arr", JSON.stringify(tree_dict_arr));
+    // console.log(JSON.stringify(tree_dict_arr));
 }
 
 //タブが切り替わった時に発火

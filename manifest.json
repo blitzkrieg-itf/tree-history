@@ -8,7 +8,7 @@
     ],
     "browser_action": {
         "default_icon": {
-            "1": "icon1.png"
+            "1": "tree.png"
         },
         "default_title": "テスト",
         "default_popup": "popup.html"

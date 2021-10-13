@@ -40,9 +40,9 @@
                 margin-bottom: 30px;
             }
 
-            .canvas {
+            #network {
                 position: relative;/*描画を#particles-jsよりも上にするためposition:relative;を指定*/
-	            z-index: -1;/*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
+	            z-index: 1;/*z-indexの数字を大きくすることで描画を#particles-jsよりも上に*/
                 background-color:#c0e2f1;
                 width:70%;
                 margin-top: 100px;
@@ -58,8 +58,7 @@
     
     <h1 >Tree history</h1>
     <p>タブの遷移をグラフで可視化します</p>
-    <div class='canvas' id="network"></div>
-    
+    <div id="network"></div>
     
     <script src="jquery-3.6.0.min.js"></script>
     <script src="vis.min.js"></script>

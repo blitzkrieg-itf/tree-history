@@ -77,7 +77,13 @@ chrome.tabs.onUpdated.addListener(
                     nowURL = tab.url;
                     nowTitle = tab.title;
                     nowFavicon = tab.favIconUrl;
-                    tree_register(preURL, nowURL, nowTitle, nowFavicon);
+                    if (preURL==nowURL){
+                        return;
+                    }
+                    else{
+                        tree_register(preURL, nowURL, nowTitle, nowFavicon);
+                    }
+
                 }
             } else {
                 if (tab.url != undefined) {
@@ -89,7 +95,12 @@ chrome.tabs.onUpdated.addListener(
                     console.log("tab.url");
                     console.log(tab.url);
                     // nowFavicon = tab.faviconUrl;
-                    tree_register(nowURL, tab.url, tab.title, tab.favIconUrl);
+                    if (preURL==nowURL){
+                        return;
+                    }
+                    else{
+                        tree_register(preURL, nowURL, nowTitle, nowFavicon);
+                    }
                 }
             }
             onCreatedFlag = false

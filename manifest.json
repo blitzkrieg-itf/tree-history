@@ -19,7 +19,7 @@
                 "<all_urls>"
             ],
             "js":[
-                "jquery-3.6.0.min.js",
+                "min/jquery-3.6.0.min.js",
                 "content.js"
             ]
         }

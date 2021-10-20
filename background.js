@@ -83,7 +83,6 @@ chrome.tabs.onUpdated.addListener(
                     else{
                         tree_register(preURL, nowURL, nowTitle, nowFavicon);
                     }
-
                 }
             } else {
                 if (tab.url != undefined) {
